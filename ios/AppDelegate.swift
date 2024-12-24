@@ -9,17 +9,14 @@ import Foundation
 
 @UIApplicationMain
 class AppDelegate: EXAppDelegateWrapper {
-  var rootView: UIView? = nil
+  private var isBridgeInitialized = false
 
   override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     self.moduleName = "ExpoDevClientTest"
     self.initialProps = [:]
+    self.automaticallyLoadReactNativeWindow = false
     
     return true
-  }
-  
-  override func sourceURL(for bridge: RCTBridge) -> URL? {
-    return self.bundleURL()
   }
   
   private func connectionOptionsToLaunchOptions(_ connectionOptions: UIScene
@@ -53,55 +50,27 @@ class AppDelegate: EXAppDelegateWrapper {
       return launchOptions
   }
 
-  func createRCTRootViewFactory() -> RCTRootViewFactory {
-      let configuration = RCTRootViewFactoryConfiguration(
-          bundleURL: bundleURL()!,
-          newArchEnabled: fabricEnabled(),
-          turboModuleEnabled: turboModuleEnabled(),
-          bridgelessEnabled: bridgelessEnabled()
-      )
-
-      weak var weakSelf = self
-      configuration
-          .createRootViewWithBridge = { bridge, moduleName, initProps in
-              return weakSelf!.createRootView(
-                  with: bridge,
-                  moduleName: moduleName,
-                  initProps: initProps
-              )
-          }
-
-      configuration.createBridgeWithDelegate = { delegate, launchOptions in
-          return weakSelf!.createBridge(
-              with: delegate,
-              launchOptions: launchOptions
-          )
-      }
-      return ExpoReactRootViewFactory(configuration: configuration)
-  }
-
   func initAppFromScene(_ connectionOptions: UIScene
-      .ConnectionOptions) -> Bool
+    .ConnectionOptions, window: UIWindow) -> Bool
   {
       // If bridge has already been initiated by another scene, there's
       // nothing to do here
-      if bridge != nil {
+    if isBridgeInitialized {
           return false
-      }
-
-      if bridge == nil {
-          RCTAppSetupPrepareApp(UIApplication.shared, turboModuleEnabled())
-          rootViewFactory = createRCTRootViewFactory()
-      }
-
+    } else {
       let initProps = prepareInitialProps()
-      rootView = rootViewFactory.view(
-          withModuleName: moduleName!,
-          initialProperties: initProps,
-          launchOptions: connectionOptionsToLaunchOptions(connectionOptions)
-      )
+      let launchOptions = connectionOptionsToLaunchOptions(connectionOptions)
+      reactDelegate.createReactRootView(moduleName!, initialProperties: initProps, launchOptions: launchOptions)
+      self.window = window
 
+      isBridgeInitialized = true
+      super.application(
+          UIApplication.shared,
+          didFinishLaunchingWithOptions: launchOptions
+      )
       return true
+    }
+
   }
 
   func prepareInitialProps() -> [String: Any] {
@@ -113,18 +82,6 @@ class AppDelegate: EXAppDelegateWrapper {
       #endif
 
       return initProps
-  }
-
-  func finishedLaunchingWithOptions(
-      window: UIWindow?,
-      connectOptions: UIScene.ConnectionOptions
-  ) {
-      self.window = window!
-      let launchOptions = connectionOptionsToLaunchOptions(connectOptions)
-      super.application(
-          UIApplication.shared,
-          didFinishLaunchingWithOptions: launchOptions
-      )
   }
 
   override func bundleURL() -> URL? {

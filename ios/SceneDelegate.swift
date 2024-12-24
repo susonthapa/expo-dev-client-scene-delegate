@@ -18,22 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   ) {
       guard let windowScene = (scene as? UIWindowScene) else { return }
       let delegate = (UIApplication.shared.delegate as! AppDelegate)
-      delegate.initAppFromScene(connectionOptions)
-      let rootViewController = delegate.createRootViewController()
-      delegate.setRootView(
-          delegate.rootView!,
-          toRootViewController: rootViewController
-      )
-
       window = UIWindow(windowScene: windowScene)
-      window?.rootViewController = rootViewController
-      delegate.window = window!
-      window?.makeKeyAndVisible()
-
-      delegate.finishedLaunchingWithOptions(
-          window: window,
-          connectOptions: connectionOptions
-      )
+      delegate.initAppFromScene(connectionOptions, window: window!)
   }
 
 }
