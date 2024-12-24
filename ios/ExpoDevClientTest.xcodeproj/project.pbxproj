@@ -14,6 +14,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		CCFB0F96F62E5808A9F397E0 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B3F0E4091CEE4C0DAD7DB3 /* ExpoModulesProvider.swift */; };
 		D941A92589B8F25814768CA8 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5BE4DAC6E1E384BB38D41D /* ExpoModulesProvider.swift */; };
+		E03BA70A2D1A827D00EBCCDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03BA7092D1A827D00EBCCDF /* SceneDelegate.swift */; };
 		E04476BD2D1A5D1100A78138 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04476BB2D1A5D1100A78138 /* AppDelegate.swift */; };
 		F850FC3C4B56A99DE0E4C34C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ExpoDevClientTest/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ExpoDevClientTest-ExpoDevClientTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpoDevClientTest-ExpoDevClientTestTests.release.xcconfig"; path = "Target Support Files/Pods-ExpoDevClientTest-ExpoDevClientTestTests/Pods-ExpoDevClientTest-ExpoDevClientTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		CF5BE4DAC6E1E384BB38D41D /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-ExpoDevClientTest-ExpoDevClientTestTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		E03BA7092D1A827D00EBCCDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E04476BB2D1A5D1100A78138 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E04476BC2D1A5D1100A78138 /* ExpoDevClientTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExpoDevClientTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -95,6 +97,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 				E04476BB2D1A5D1100A78138 /* AppDelegate.swift */,
+				E03BA7092D1A827D00EBCCDF /* SceneDelegate.swift */,
 				E04476BC2D1A5D1100A78138 /* ExpoDevClientTest-Bridging-Header.h */,
 			);
 			name = ExpoDevClientTest;
@@ -466,6 +469,7 @@
 			files = (
 				E04476BD2D1A5D1100A78138 /* AppDelegate.swift in Sources */,
 				CCFB0F96F62E5808A9F397E0 /* ExpoModulesProvider.swift in Sources */,
+				E03BA70A2D1A827D00EBCCDF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,10 +675,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -754,10 +755,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
