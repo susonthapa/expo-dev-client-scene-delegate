@@ -3,4 +3,5 @@
 //
 
 #import <RCTAppDelegate.h>
+#import <Expo/Expo.h>
 #import <React/RCTBundleURLProvider.h>

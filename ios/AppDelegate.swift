@@ -8,7 +8,7 @@
 import Foundation
 
 @UIApplicationMain
-class AppDelegate: RCTAppDelegate {
+class AppDelegate: EXAppDelegateWrapper {
   
   override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     self.moduleName = "ExpoDevClientTest"
@@ -23,7 +23,7 @@ class AppDelegate: RCTAppDelegate {
   
   override func bundleURL() -> URL? {
 #if DEBUG
-    return RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+    return RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: ".expo/.virtual-metro-entry")
   #else
     return NSBundle.main.url(forResource: "main", withExtension: "jsbundle")
   #endif
