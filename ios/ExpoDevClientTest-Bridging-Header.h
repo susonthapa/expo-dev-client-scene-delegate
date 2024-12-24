@@ -5,3 +5,6 @@
 #import <RCTAppDelegate.h>
 #import <Expo/Expo.h>
 #import <React/RCTBundleURLProvider.h>
+#import "React/RCTUIManager.h"
+#import "React/RCTViewManager.h"
+#import "React/RCTLinkingManager.h"
