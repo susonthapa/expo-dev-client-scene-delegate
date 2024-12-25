@@ -1,0 +1,21 @@
+diff --git a/node_modules/expo-dev-menu/ios/DevMenuWindow.swift b/node_modules/expo-dev-menu/ios/DevMenuWindow.swift
+index 55179a8..4a829b9 100644
+--- a/node_modules/expo-dev-menu/ios/DevMenuWindow.swift
++++ b/node_modules/expo-dev-menu/ios/DevMenuWindow.swift
+@@ -29,7 +29,15 @@ class DevMenuWindow: UIWindow, OverlayContainerViewControllerDelegate {
+     bottomSheetController = OverlayContainerViewController(style: .flexibleHeight)
+     devMenuViewController = DevMenuViewController(manager: manager)
+      
+-    super.init(frame: UIScreen.main.bounds)
++    let windowScene = UIApplication.shared.connectedScenes
++          .filter { $0.activationState == .foregroundActive }
++          .first as? UIWindowScene
++        
++    if let scene = windowScene {
++        super.init(windowScene: scene)
++    } else {
++        super.init(frame: UIScreen.main.bounds)
++    }
+ 
+     bottomSheetController.delegate = self
+     bottomSheetController.viewControllers = [devMenuViewController]
